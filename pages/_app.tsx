@@ -1,25 +1,22 @@
-import '../styles/globals.css';
-import type { AppProps } from 'next/app';
-import Layout from '../components/Layout';
-import { UUIDProvider } from '../context/UUID';
-import { ConnectProvider } from '../context/connected';
-import { useState } from 'react';
+import React from "react";
+import type { AppProps } from "next/app";
+import { DAppProvider } from "@usedapp/core";
+
+import { networkConfig } from "../constants/config";
+import Layout from "../components/Layout";
+
+import "../styles/globals.css";
 
 function MyApp({ Component, pageProps }: AppProps) {
-  const [authSig, setAuthSig] = useState('');
-  
   return (
-    <UUIDProvider>
-      <ConnectProvider>
+    <React.StrictMode>
+      <DAppProvider config={networkConfig}>
         <Layout>
-          <Component
-            authSig={authSig}
-            setAuthSig={setAuthSig}
-            {...pageProps} />
+          <Component {...pageProps} />
         </Layout>
-      </ConnectProvider>
-    </UUIDProvider>
-  )
+      </DAppProvider>
+    </React.StrictMode>
+  );
 }
 
-export default MyApp
+export default MyApp;

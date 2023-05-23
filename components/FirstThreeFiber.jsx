@@ -224,7 +224,8 @@ const FirstThreeFiber = () => {
             left: 0,
             right: 0,
             bottom: -5,
-            zIndex: 1,
+            zIndex: -10,
+            opacity: 0.6,
           }}
           antialias="false"
         >
